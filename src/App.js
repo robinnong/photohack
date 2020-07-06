@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';  
 import { createClient } from 'pexels';
+import ApiKey from './ApiKey.js';
 import './App.css';
 
-const client = createClient('563492ad6f917000010000011f5e758f86d140e99237550104aae485') 
+const client = createClient(ApiKey);
 
 const App = () => {
   const [imageResults, setImageResults] = useState([]);
@@ -11,33 +12,42 @@ const App = () => {
   const [counter, setCounter] = useState(0);
   const [imageSearched, isSearched] = useState(false);
   const [galleryDisplay, isDisplayed] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
-    console.log(counter)
     // When the user reaches the end of the results, then display all of their liked images
     if (counter === imageResults.length - 1) {
-      console.log("done")
       isDisplayed(true);
       isSearched(false);
     }
   }, [counter])
   
+  // Makes a API call via the Pexels cliet
   const getPhotos = (e) => { 
     e.preventDefault();
+    // Error handling - request will be made as long as the query string is not empty
     if (userInput !== "") {  
       const query = userInput;
       client.photos.search({ query, per_page: 10 })
       .then(results => {
-        setImageResults(results.photos); 
-        isSearched(true);
-        setInput("");
-      }); 
+        // If not results were returned, display an error message
+        if(results.photos.length === 0) {
+          setErrorMessage("Sorry, we couldn't find any images based on your search 😭 Check your spelling for try a new search term.")
+        // If results are returned, save them to the list of results and clear the search bar
+        } else { 
+          setImageResults(results.photos); 
+          isSearched(true);
+          setErrorMessage("")
+          setInput("");
+        }
+      })
     }
   } 
 
   // Sets the input field state on each input change
   const handleUserInput = (e) => setInput(e.target.value); 
 
+  // Adds the current images to the list of liked images
   const addToLiked = () => {
     let likeCopy = [...likedImages];
     likeCopy.push(imageResults[counter])
@@ -53,13 +63,16 @@ const App = () => {
         <p>Want to create some art but can't decide if you want to paint a landscape or practice drawing portraits? Get inspired with powerful reference images, and narrow down your favourites. Let's get started!</p> 
 
         <h2>Search ideas: a subject, colour, emotion or multiple words.</h2>
-        <form action="" class="searchForm" onSubmit={getPhotos}>
-          <label for="search" className="sr-only">Search</label>
+        
+        <form action="" className="searchForm" onSubmit={getPhotos}>
+          <label htmlFor="search" className="sr-only">Search</label>
           <input onChange={handleUserInput} type="text" id="search" placeholder="'Mountains'"></input>
           <button type="submit" aria-label="Search">
-            <i class="fas fa-search" aria-hidden="true"></i>
+            <i className="fas fa-search" aria-hidden="true"></i>
           </button>
         </form> 
+
+        <p className="errorMessage">{errorMessage}</p>
 
         {imageSearched? 
           <div className="votingContainer">

@@ -124,10 +124,9 @@ main > p {
     border: none;
     font-size: 2.2rem;
     color: rgb(66, 66, 66);
-}
+}  
 
-.searchForm input:focus,
-.searchForm input:active {
+.errorMessage {
 
 }
 
@@ -147,15 +146,15 @@ main > p {
 
     display: flex;
     justify-content: center;
-    align-items: center;
-
+    align-items: center; 
+    
     font-size: 2.8rem; 
     height: 50px;
     width: 50px;
     background-color:white;
     border: none;
     box-shadow: 0 0 10px 2px rgba(44, 44, 44, 0.199);
-}
+} 
 
 .votingContainer a {
     position: absolute;
