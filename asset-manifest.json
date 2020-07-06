@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/photohack/static/css/main.60983506.chunk.css",
+    "main.js": "/photohack/static/js/main.8e4cc1b6.chunk.js",
+    "main.js.map": "/photohack/static/js/main.8e4cc1b6.chunk.js.map",
+    "runtime-main.js": "/photohack/static/js/runtime-main.75b67618.js",
+    "runtime-main.js.map": "/photohack/static/js/runtime-main.75b67618.js.map",
+    "static/js/2.3c2201bd.chunk.js": "/photohack/static/js/2.3c2201bd.chunk.js",
+    "static/js/2.3c2201bd.chunk.js.map": "/photohack/static/js/2.3c2201bd.chunk.js.map",
+    "index.html": "/photohack/index.html",
+    "precache-manifest.c612ae8bb74c9c2306cd8daa6a5c1048.js": "/photohack/precache-manifest.c612ae8bb74c9c2306cd8daa6a5c1048.js",
+    "service-worker.js": "/photohack/service-worker.js",
+    "static/css/main.60983506.chunk.css.map": "/photohack/static/css/main.60983506.chunk.css.map",
+    "static/js/2.3c2201bd.chunk.js.LICENSE.txt": "/photohack/static/js/2.3c2201bd.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.75b67618.js",
+    "static/js/2.3c2201bd.chunk.js",
+    "static/css/main.60983506.chunk.css",
+    "static/js/main.8e4cc1b6.chunk.js"
+  ]
+}
