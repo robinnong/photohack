@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';  
 import { createClient } from 'pexels';
 import ApiKey from './ApiKey.js';
+import Form from './Form.js';
+import Gallery from './Gallery.js';
+import Footer from './Footer.js';
 import './App.css';
 
 const client = createClient(ApiKey);
@@ -13,22 +16,29 @@ const App = () => {
   const [imageSearched, isSearched] = useState(false);
   const [galleryDisplay, isDisplayed] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  // const [backgroundImage, setBackground] = useState("");
 
+  // Effect runs only on the first render
   useEffect(() => {
-    // When the user reaches the end of the results, then display all of their liked images
+    // Get the featured image of the hour as the background 
+    // client.photos.curated({ per_page: 1 }).then(photos => {...});
+  }, [])
+
+  // Effect runs whenever the counter updates - When the user reaches the end of the results, then display all of their liked images
+  useEffect(() => { 
     if (counter === imageResults.length - 1) {
       isDisplayed(true);
       isSearched(false);
     }
   }, [counter])
   
-  // Makes a API call via the Pexels cliet
+  // Makes a API call via the Pexels client
   const getPhotos = (e) => { 
     e.preventDefault();
     // Error handling - request will be made as long as the query string is not empty
     if (userInput !== "") {  
       const query = userInput;
-      client.photos.search({ query, per_page: 10 })
+      client.photos.search({ query, per_page: 15 })
       .then(results => {
         // If not results were returned, display an error message
         if(results.photos.length === 0) {
@@ -56,23 +66,24 @@ const App = () => {
 
   return (
     <div className="App">
-      <header className="wrapper">
-        <h1>Photohack</h1>
+      <header>
+        <h1>Art Inspo</h1>
       </header>
-      <main className="wrapper">
-        <p>Want to create some art but can't decide if you want to paint a landscape or practice drawing portraits? Get inspired with powerful reference images, and narrow down your favourites. Let's get started!</p> 
+      <main>
+        <div className="blue">
+          <div className="wrapper">
+            <p>Want to create some art but can't decide if you want to paint a landscape or practice drawing portraits? Get inspired with powerful reference images, and narrow down your favourites. Let's get started!</p> 
 
-        <h2>Search ideas: a subject, colour, emotion or multiple words.</h2>
-        
-        <form action="" className="searchForm" onSubmit={getPhotos}>
-          <label htmlFor="search" className="sr-only">Search</label>
-          <input onChange={handleUserInput} type="text" id="search" placeholder="'Mountains'"></input>
-          <button type="submit" aria-label="Search">
-            <i className="fas fa-search" aria-hidden="true"></i>
-          </button>
-        </form> 
+            <h2>Search ideas: a subject, colour, emotion or multiple words.</h2>
 
-        <p className="errorMessage">{errorMessage}</p>
+            <Form 
+            getPhotos={(e) => getPhotos(e)}
+            handleUserInput={(e) => handleUserInput(e)}
+            />
+
+            <p className="errorMessage">{errorMessage}</p>
+          </div>
+        </div>
 
         {imageSearched? 
           <div className="votingContainer">
@@ -88,28 +99,10 @@ const App = () => {
           </div>
         : null}
 
-        {galleryDisplay? 
-          <>
-            <p>Here are the images for today's creative inspiration:</p>
-            <ul className="gallery">
-              {likedImages.map((image, key) => {
-                return (
-                  <li key={key}> 
-                    <div className="imageContainer">
-                      <img src={image.src.large} alt=""/>
-                    </div> 
-                    <a href={image.photographer_url} target="_blank" rel="noopener noreferrer">@{image.photographer}</a>
-                  </li>
-                )
-              })} 
-            </ul>
-          </>
-        :null}
+        {galleryDisplay? <Gallery images={likedImages}/> :null}
 
       </main>
-      <footer>
-        © 2020 <a href="https://github.com/robinnong">Robin Nong</a>. Photos provided by <a href="https://www.pexels.com">Pexels.</a>
-      </footer>
+      <Footer />
     </div>
   );
 }
