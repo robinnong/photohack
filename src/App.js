@@ -16,13 +16,16 @@ const App = () => {
   const [imageSearched, isSearched] = useState(false);
   const [galleryDisplay, isDisplayed] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  // const [backgroundImage, setBackground] = useState("");
+  const [featuredImage, setFeatured] = useState("");
 
-  // Effect runs only on the first render
-  useEffect(() => {
-    // Get the featured image of the hour as the background 
-    // client.photos.curated({ per_page: 1 }).then(photos => {...});
-  }, [])
+  // // Effect runs only on the first render
+  // useEffect(() => {
+  //   // Get the featured image of the hour as the background 
+  //   client.photos.curated({ per_page: 1 })
+  //   .then(result => {
+  //     setFeatured(result.photos[0].src.landscape); 
+  //   });
+  // }, [])
 
   // Effect runs whenever the counter updates - When the user reaches the end of the results, then display all of their liked images
   useEffect(() => { 
@@ -47,7 +50,7 @@ const App = () => {
         } else { 
           setImageResults(results.photos); 
           isSearched(true);
-          setErrorMessage("")
+          setErrorMessage("");
           setInput("");
         }
       })
@@ -60,8 +63,8 @@ const App = () => {
   // Adds the current images to the list of liked images
   const addToLiked = () => {
     let likeCopy = [...likedImages];
-    likeCopy.push(imageResults[counter])
-    setLikedImages(likeCopy)
+    likeCopy.push(imageResults[counter]);
+    setLikedImages(likeCopy);
   }
 
   return (
@@ -72,9 +75,9 @@ const App = () => {
       <main>
         <div className="blue">
           <div className="wrapper">
-            <p>Want to create some art but can't decide if you want to paint a landscape or practice drawing portraits? Get inspired with powerful reference images, and narrow down your favourites. Let's get started!</p> 
+            <p>Want to create some art but can't decide if you want to paint a landscape or practice drawing portraits? Get inspired with powerful reference images, and narrow down your favourites.</p>  
 
-            <h2>Search ideas: a subject, colour, emotion or multiple words.</h2>
+            <p>Search ideas: a subject, colour, emotion or multiple words.</p>
 
             <Form 
             getPhotos={(e) => getPhotos(e)}

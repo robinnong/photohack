@@ -3,7 +3,7 @@ import React from 'react';
 const Gallery = (props) => {
     return (
         <div className="galleryContainer">
-            <p>Here are the images for today's creative inspiration:</p>
+            <p>Here is today's creative inspiration:</p>
             <ul className="gallery">
                 {props.images.map((image, key) => {
                     return (
