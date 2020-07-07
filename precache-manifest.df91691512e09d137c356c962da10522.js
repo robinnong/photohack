@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "d6be6dd963017d9845cac9507d47abc3",
+    "revision": "c1378a4f28e22911303a797f40eff174",
     "url": "/photohack/index.html"
   },
   {
-    "revision": "70960e14469348c950ed",
-    "url": "/photohack/static/css/main.87fc667f.chunk.css"
+    "revision": "9dd06a270dd0dedf05e3",
+    "url": "/photohack/static/css/main.5c28a9a3.chunk.css"
   },
   {
     "revision": "d3c8056fc24f1490ec75",
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/photohack/static/js/2.27ebf186.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "70960e14469348c950ed",
-    "url": "/photohack/static/js/main.2a3cbae5.chunk.js"
+    "revision": "9dd06a270dd0dedf05e3",
+    "url": "/photohack/static/js/main.9aefbb71.chunk.js"
   },
   {
     "revision": "2c486f28ef18e2b54ae6",
