@@ -9,6 +9,10 @@ a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,c
 .sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; border: 0; padding: 0; white-space: nowrap; clip-path: inset(100%); clip: rect(0 0 0 0); overflow: hidden;}
 
 /* GLOBAL */ 
+:root { 
+  --background-image-full: url();
+} 
+
 /* GENERIC OVERRIDES */
 body,
 ul,
@@ -74,15 +78,18 @@ body {
     font-size: 1.8rem;   
     min-height: 100vh; 
     color: #f3f3f3;
-    background-color: #0d0d1d;
+    /* background-color: #0d0d1d;   */
+    background: linear-gradient(rgb(0, 0, 0, 0.95), rgba(0, 0, 0, 0.65) 100%), var(--background-image-full) no-repeat; 
+    background-size: cover; 
 } 
 
 /* APP */ 
 h1 {
-  font-size: 2.6rem;
-  font-weight: 600;
-  letter-spacing: 0.2rem;
-  text-transform: uppercase;  
+  font-family: 'Galada', cursive; 
+  font-size: 3rem;
+  font-weight: 400; 
+  display: inline-block; 
+  border-bottom: 2px solid orange; 
 }
 
 h2 {
@@ -92,7 +99,7 @@ h2 {
 }
 
 header {
-    padding: 20px;
+    padding: 30px;
 }
 
 header, main {
@@ -103,8 +110,9 @@ main {
     padding: 50px 0 100px 0;  
 }
 
-.wrapper > p {
+p {
     line-height: 2.4rem;
+    letter-spacing: 0.05rem;
     max-width: 600px;
     margin: auto; 
 }
@@ -114,9 +122,16 @@ main {
     margin: 40px auto;
 }
 
-.featured{ 
-    width: 100%;
+.featured { 
+    position: absolute;
+    bottom: 50px;
+    left: 20px;
+    font-weight: 300;
+    font-size: 1.4rem;
+    color: rgba(255, 255, 255, 0.8);
 }
+
+.featured a {text-decoration: underline;}
 
 .searchForm {	   
     display: flex;

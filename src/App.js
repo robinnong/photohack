@@ -15,17 +15,30 @@ const App = () => {
   const [counter, setCounter] = useState(0);
   const [imageSearched, isSearched] = useState(false);
   const [galleryDisplay, isDisplayed] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
-  const [featuredImage, setFeatured] = useState("");
+  const [errorMessage, setErrorMessage] = useState(""); 
+  const [featuredImage, setFeaturedImage] = useState({});
 
-  // // Effect runs only on the first render
-  // useEffect(() => {
-  //   // Get the featured image of the hour as the background 
-  //   client.photos.curated({ per_page: 1 })
-  //   .then(result => {
-  //     setFeatured(result.photos[0].src.landscape); 
-  //   });
-  // }, [])
+  // Effect runs only on the first render - Gets the first featured image of the hour and sets it as the background image
+  useEffect(() => { 
+    client.photos.curated({ per_page: 6 })
+    .then(result => { 
+      // Get a random index between 0 and 6
+      const index = Math.floor(Math.random() * 6);
+      const photoMeta = result.photos[index];
+
+      setFeaturedImage(
+        {
+          photog: photoMeta.photographer,
+          url: photoMeta.photographer_url 
+        }
+      ); 
+
+      document.documentElement.style.setProperty(
+        "--background-image-full",
+        `url(${photoMeta.src.original})`
+      );
+    });
+  }, [])
 
   // Effect runs whenever the counter updates - When the user reaches the end of the results, then display all of their liked images
   useEffect(() => { 
@@ -70,7 +83,7 @@ const App = () => {
   return (
     <div className="App">
       <header>
-        <h1>Art Inspo</h1>
+        <h1>Photo Inspo</h1>
       </header>
       <main>
         <div className="blue">
@@ -91,19 +104,24 @@ const App = () => {
         {imageSearched? 
           <div className="votingContainer">
             <img src={imageResults[counter].src.large} alt=""/>
+
             <button onClick={() => setCounter(counter + 1)} className="dislike" aria-label="dislike">
               <span role="img" aria-hidden="true">👎</span>
             </button>
+
             <button onClick={() => { addToLiked(); setCounter(counter + 1) }}
             className="like" aria-label="like">
               <span role="img" aria-hidden="true">👍</span>
             </button>
+
             <a href={imageResults[counter].photographer_url} target="_blank" rel="noopener noreferrer">@{imageResults[counter].photographer}</a>
           </div>
         : null}
 
         {galleryDisplay? <Gallery images={likedImages}/> :null}
 
+        <p className="featured">Photo of the day by <a href={featuredImage.url}>{featuredImage.photog}</a></p>
+        
       </main>
       <Footer />
     </div>
