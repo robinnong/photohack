@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';  
 import { createClient } from 'pexels';
-import ApiKey from './ApiKey.js';
-import Form from './Form.js';
-import Gallery from './Gallery.js';
-import Footer from './Footer.js';
+import ApiKey from './components/ApiKey.js';
+import Form from './components/Form.js';
+import Gallery from './components/Gallery.js';
+import Footer from './components/Footer.js';
 import './App.css';
 
 const client = createClient(ApiKey);
@@ -114,7 +114,7 @@ const App = () => {
               <span role="img" aria-hidden="true">👍</span>
             </button>
 
-            <a href={imageResults[counter].photographer_url} target="_blank" rel="noopener noreferrer">@{imageResults[counter].photographer}</a>
+            <a href={imageResults[counter].url} target="_blank" rel="noopener noreferrer">@{imageResults[counter].photographer}</a>
           </div>
         : null}
 

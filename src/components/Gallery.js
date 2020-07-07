@@ -8,7 +8,7 @@ const Gallery = (props) => {
                 {props.images.map((image, key) => {
                     return (
                         <li key={key} >
-                            <a href={image.photographer_url} target="_blank" rel="noopener noreferrer">
+                            <a href={image.url} target="_blank" rel="noopener noreferrer">
                                 <div className="imageContainer">
                                     <img src={image.src.large} alt={`Photo by ${image.photographer} from Pexels`} />
                                 </div>
