@@ -45,6 +45,7 @@ const App = () => {
     if (counter === imageResults.length - 1) {
       isDisplayed(true);
       isSearched(false);
+      setCounter(0);
     }
   }, [counter])
   
@@ -63,9 +64,12 @@ const App = () => {
         } else { 
           setImageResults(results.photos); 
           isSearched(true);
+          setLikedImages([]);
           setErrorMessage("");
           setInput("");
         }
+      }).catch((error)=>{
+        setErrorMessage("Sorry, a problem occurred. Please try again later.")
       })
     }
   } 
