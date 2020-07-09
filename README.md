@@ -4,3 +4,4 @@ This project was built during the Mintbean #CareeHack 4-hour hackathon - the obj
 
 To Do:
 - Added loading / transitional elements between slow loading images and on page load
+- Preload images
