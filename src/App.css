@@ -10,7 +10,7 @@ a,abbr,acronym,address,applet,article,aside,audio,b,big,blockquote,body,canvas,c
 
 /* GLOBAL */ 
 :root { 
-  --background-image-full: url();
+  --background-image-full: url('assets/mountain-under-a-clear-sky-4403896.jpg');
 } 
 
 /* GENERIC OVERRIDES */
@@ -79,7 +79,7 @@ body {
     min-height: 100vh; 
     color: #f3f3f3;
     /* background-color: #0d0d1d;   */
-    background: linear-gradient(rgb(0, 0, 0, 0.95), rgba(0, 0, 0, 0.65) 100%), var(--background-image-full) no-repeat; 
+    background: linear-gradient(rgb(0, 0, 0, 0.9), rgba(0, 0, 0, 0.65) 100%), var(--background-image-full) no-repeat; 
     background-size: cover; 
 } 
 
@@ -124,7 +124,7 @@ p {
 
 .featured { 
     position: absolute;
-    bottom: 50px;
+    bottom: 40px;
     left: 20px;
     font-weight: 300;
     font-size: 1.4rem;

@@ -4,7 +4,7 @@ import ApiKey from './components/ApiKey.js';
 import Form from './components/Form.js';
 import Gallery from './components/Gallery.js';
 import Footer from './components/Footer.js';
-import './App.css';
+import './App.css'; 
 
 const client = createClient(ApiKey);
 
@@ -16,10 +16,10 @@ const App = () => {
   const [imageSearched, isSearched] = useState(false);
   const [galleryDisplay, isDisplayed] = useState(false);
   const [errorMessage, setErrorMessage] = useState(""); 
-  const [featuredImage, setFeaturedImage] = useState({});
+  const [featuredImage, setFeaturedImage] = useState({ photog: "Elina Sazonova", url: "https://www.pexels.com/@elina-sazonova"} );
 
   // Effect runs only on the first render - Gets the first featured image of the hour and sets it as the background image
-  useEffect(() => { 
+  useEffect(() => {  
     client.photos.curated({ per_page: 6 })
     .then(result => { 
       // Get a random index between 0 and 6
@@ -54,9 +54,9 @@ const App = () => {
     e.preventDefault();
     // Error handling - request will be made as long as the query string is not empty
     if (userInput !== "") {  
-      const query = userInput;
+      const query = userInput; 
       client.photos.search({ query, per_page: 15 })
-      .then(results => {
+      .then(results => { 
         // If not results were returned, display an error message
         if(results.photos.length === 0) {
           setErrorMessage("Sorry, we couldn't find any images based on your search 😭 Check your spelling for try a new search term.")
@@ -124,7 +124,7 @@ const App = () => {
 
         {galleryDisplay? <Gallery images={likedImages}/> :null}
 
-        <p className="featured">Photo of the day by <a href={featuredImage.url}>{featuredImage.photog}</a></p>
+        <p className="featured">Photo of the day by <a href={featuredImage.url}>{featuredImage.photog}</a>.</p>
         
       </main>
       <Footer />
