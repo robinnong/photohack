@@ -4,11 +4,13 @@ import ApiKey from './components/ApiKey.js';
 import Form from './components/Form.js';
 import Gallery from './components/Gallery.js';
 import Footer from './components/Footer.js';
+import ReactLoading from 'react-loading';
 import './App.css'; 
 
 const client = createClient(ApiKey);
 
 const App = () => {
+  const [isPageLoaded, setLoadStatus] = useState(false);
   const [imageResults, setImageResults] = useState([]);
   const [userInput, setInput] = useState("");
   const [likedImages, setLikedImages] = useState([]); 
@@ -21,7 +23,7 @@ const App = () => {
   // Effect runs only on the first render - Gets the first featured image of the hour and sets it as the background image
   useEffect(() => {  
     client.photos.curated({ per_page: 6 })
-    .then(result => { 
+    .then(result => {
       // Get a random index between 0 and 6
       const index = Math.floor(Math.random() * 6);
       const photoMeta = result.photos[index];
@@ -29,15 +31,17 @@ const App = () => {
       setFeaturedImage(
         {
           photog: photoMeta.photographer,
-          url: photoMeta.photographer_url 
+          url: photoMeta.photographer_url
         }
-      ); 
+      );
 
       document.documentElement.style.setProperty(
         "--background-image-full",
-        `url(${photoMeta.src.original})`
+        `url(${photoMeta.src.landscape})`
       );
     });
+
+    setTimeout(() => setLoadStatus(true), 3000);
   }, [])
 
   // Effect runs whenever the counter updates - When the user reaches the end of the results, then display all of their liked images
@@ -86,48 +90,57 @@ const App = () => {
 
   return (
     <div className="App">
-      <header>
-        <h1>Photo Inspo</h1>
-      </header>
-      <main>
-        <div className="blue">
-          <div className="wrapper">
-            <p>Want to create some art but can't decide if you want to paint a landscape or practice drawing portraits? Get inspired with powerful reference images, and narrow down your favourites.</p>  
+      {!isPageLoaded
+      ? 
+      <div className="loadingBackground">
+        <ReactLoading className="loadingAnimation" type="bars" color="white" height={90} width={100} />
+      </div>
+      :
+      <>
+        <header>
+          <h1>Photo Inspo</h1>
+        </header>
+        <main>
+          <div className="blue">
+            <div className="wrapper">
+              <p>Want to create some art but can't decide if you want to paint a landscape or practice drawing portraits? Get inspired with powerful reference images, and narrow down your favourites.</p>  
 
-            <p>Search ideas: a subject, colour, emotion or multiple words.</p>
+              <p>Search ideas: a subject, colour, emotion or multiple words.</p>
 
-            <Form 
-            getPhotos={(e) => getPhotos(e)}
-            handleUserInput={(e) => handleUserInput(e)}
-            />
+              <Form 
+              getPhotos={(e) => getPhotos(e)}
+              handleUserInput={(e) => handleUserInput(e)}
+              />
 
-            <p className="errorMessage">{errorMessage}</p>
+              <p className="errorMessage">{errorMessage}</p>
+            </div>
           </div>
-        </div>
 
-        {imageSearched? 
-          <div className="votingContainer">
-            <img src={imageResults[counter].src.large} alt=""/>
+          {imageSearched? 
+            <div className="votingContainer">
+              <img src={imageResults[counter].src.large} alt=""/>
 
-            <button onClick={() => setCounter(counter + 1)} className="dislike" aria-label="dislike">
-              <span role="img" aria-hidden="true">👎</span>
-            </button>
+              <button onClick={() => setCounter(counter + 1)} className="dislike" aria-label="dislike">
+                <span role="img" aria-hidden="true">👎</span>
+              </button>
 
-            <button onClick={() => { addToLiked(); setCounter(counter + 1) }}
-            className="like" aria-label="like">
-              <span role="img" aria-hidden="true">👍</span>
-            </button>
+              <button onClick={() => { addToLiked(); setCounter(counter + 1) }}
+              className="like" aria-label="like">
+                <span role="img" aria-hidden="true">👍</span>
+              </button>
 
-            <a href={imageResults[counter].url} target="_blank" rel="noopener noreferrer">@{imageResults[counter].photographer}</a>
-          </div>
-        : null}
+              <a href={imageResults[counter].url} target="_blank" rel="noopener noreferrer">@{imageResults[counter].photographer}</a>
+            </div>
+          : null}
 
-        {galleryDisplay? <Gallery images={likedImages}/> :null}
-
-        <p className="featured">Photo of the day by <a href={featuredImage.url}>{featuredImage.photog}</a>.</p>
-        
-      </main>
-      <Footer />
+          {galleryDisplay? <Gallery images={likedImages}/> :null}
+        </main>
+        <Footer 
+            link={featuredImage.url}
+            photographer={featuredImage.photog}
+        />
+      </>
+      }
     </div>
   );
 }
