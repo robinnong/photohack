@@ -101,7 +101,7 @@ const App = () => {
           <h1>Photo Inspo</h1>
         </header>
         <main>
-          <div className="blue">
+          <div className="fadeIn">
             <div className="wrapper">
               <p>Want to create some art but can't decide if you want to paint a landscape or practice drawing portraits? Get inspired with powerful reference images, and narrow down your favourites.</p>  
 
