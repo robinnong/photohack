@@ -38,7 +38,7 @@ ul {list-style: none;}
 
 /* removes default syling from links */
 a {
-	  color: inherit;
+	color: inherit;
     text-decoration: none;
     transition: all 0.3s; 
     border-bottom: 1px solid transparent; 
@@ -51,9 +51,7 @@ button {
     cursor: pointer;
 }
 
-input { 
-    display: block;   
-}  
+input { display: block; }  
 
 /* makes images as wide as their container */
 img {
@@ -98,21 +96,18 @@ h2 {
     font-weight: 300;
 }
 
-header {
-    padding: 30px;
-}
-
-header, main {
-    text-align: center; 
-}  
-
-main {
-    padding: 50px 0 100px 0;  
-}
-
 p {
-    line-height: 2.4rem;
     letter-spacing: 0.05rem;
+}
+
+header { padding: 30px; }
+
+header, main { text-align: center; }  
+
+main { padding: 50px 0 100px 0; }
+
+main p {
+    line-height: 2.4rem;
     max-width: 600px;
     margin: auto; 
 }
@@ -121,6 +116,18 @@ p {
     color: rgb(44, 212, 212); 
     margin: 40px auto;
 }
+
+.loadingBackground {
+    background-color: black;
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+}
+
+.loadingAnimation { margin: auto; }
 
 .featured { 
     position: absolute;
@@ -141,9 +148,7 @@ p {
     margin-bottom: 20px;
 }
 
-.searchForm > div {
-    position: relative; 
-}
+.searchForm > div { position: relative; }
 
 .searchForm input {
     color: #dadada; 
@@ -161,9 +166,7 @@ p {
     border: 1px solid white; 
 }
 
-.searchForm input:focus + button { 
-    color: white;
-}
+.searchForm input:focus + button { color: white; }
 
 .searchForm button {
     position: absolute;
@@ -217,29 +220,17 @@ p {
     color: #f7f7f7;
 }
 
-.votingContainer button:hover {
-    transform: scale(1.1);
-}
+.votingContainer button:hover { transform: scale(1.1); }
 
-.votingContainer button:active {
-    transform: scale(1);
-}
+.votingContainer button:active { transform: scale(1); }
 
-.dislike {
-    left: -20px;
-}
+.dislike { left: -20px; }
 
-.like {
-    right: -20px;
-}
+.like { right: -20px; }
 
-.galleryContainer {
-    margin-top: 100px;
-}
+.galleryContainer { margin-top: 100px; }
 
-.galleryContainer > p {
-    margin-bottom: 20px;
-}
+.galleryContainer > p { margin-bottom: 20px; }
 
 .gallery { 
     display: grid;  
@@ -286,41 +277,27 @@ p {
 }
 
 .gallery a:hover img,
-.gallery a:focus img{
-    opacity: 0.4;
-}
+.gallery a:focus img { opacity: 0.4; }
 
 .gallery a:hover p,
-.gallery a:focus p {
-    opacity: 1;
-}
+.gallery a:focus p { opacity: 1; }
 
-footer { 
-  color: rgb(48, 48, 48);
+footer {  
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
   padding: 10px; 
   font-size: 1.4rem;
-  text-align: center; 
-  background-color: white;
+  text-align: center;  
 }
 
-footer a {
-    color: rgb(6, 177, 177);
-}
+footer a { color: rgb(0, 212, 212); }
 
-footer a:hover {
-    border-bottom: 1px solid rgb(6, 177, 177);
-}
+footer a:hover { border-bottom: 1px solid rgb(6, 177, 177); }
 
 @media(max-width:560px) {
-    .gallery {  
-        grid-template-columns: repeat(2, 1fr);  
-    }
+    .gallery { grid-template-columns: repeat(2, 1fr); }
 
-    .gallery a p {
-        font-size: 1.8rem;
-    }
+    .gallery a p { font-size: 1.8rem; }
 }
