@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/photohack/static/css/main.375dc1e7.chunk.css",
-    "main.js": "/photohack/static/js/main.8b89d1e7.chunk.js",
-    "main.js.map": "/photohack/static/js/main.8b89d1e7.chunk.js.map",
+    "main.css": "/photohack/static/css/main.eb52c778.chunk.css",
+    "main.js": "/photohack/static/js/main.b2b9df06.chunk.js",
+    "main.js.map": "/photohack/static/js/main.b2b9df06.chunk.js.map",
     "runtime-main.js": "/photohack/static/js/runtime-main.75b67618.js",
     "runtime-main.js.map": "/photohack/static/js/runtime-main.75b67618.js.map",
     "static/js/2.26664397.chunk.js": "/photohack/static/js/2.26664397.chunk.js",
     "static/js/2.26664397.chunk.js.map": "/photohack/static/js/2.26664397.chunk.js.map",
     "index.html": "/photohack/index.html",
-    "precache-manifest.a87fda3fd4025c6a866b4190d9178146.js": "/photohack/precache-manifest.a87fda3fd4025c6a866b4190d9178146.js",
+    "precache-manifest.b505460a9eb53e862a8ba05c22ed613e.js": "/photohack/precache-manifest.b505460a9eb53e862a8ba05c22ed613e.js",
     "service-worker.js": "/photohack/service-worker.js",
-    "static/css/main.375dc1e7.chunk.css.map": "/photohack/static/css/main.375dc1e7.chunk.css.map",
+    "static/css/main.eb52c778.chunk.css.map": "/photohack/static/css/main.eb52c778.chunk.css.map",
     "static/js/2.26664397.chunk.js.LICENSE.txt": "/photohack/static/js/2.26664397.chunk.js.LICENSE.txt",
     "static/media/App.css": "/photohack/static/media/mountain-under-a-clear-sky-4403896.ad5e0377.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.75b67618.js",
     "static/js/2.26664397.chunk.js",
-    "static/css/main.375dc1e7.chunk.css",
-    "static/js/main.8b89d1e7.chunk.js"
+    "static/css/main.eb52c778.chunk.css",
+    "static/js/main.b2b9df06.chunk.js"
   ]
 }
