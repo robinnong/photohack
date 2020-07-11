@@ -28,20 +28,22 @@ const App = () => {
       const index = Math.floor(Math.random() * 6);
       const photoMeta = result.photos[index];
 
-      setFeaturedImage(
-        {
-          photog: photoMeta.photographer,
-          url: photoMeta.photographer_url
-        }
-      );
+      setTimeout(() => {
+        setFeaturedImage(
+          {
+            photog: photoMeta.photographer,
+            url: photoMeta.photographer_url
+          }
+        );
+  
+        setLoadStatus(true);
+      }, 3000);
 
       document.documentElement.style.setProperty(
         "--background-image-full",
         `url(${photoMeta.src.landscape})`
       );
     });
-
-    setTimeout(() => setLoadStatus(true), 3000);
   }, [])
 
   // Effect runs whenever the counter updates - When the user reaches the end of the results, then display all of their liked images
@@ -135,12 +137,12 @@ const App = () => {
 
           {galleryDisplay? <Gallery images={likedImages}/> :null}
         </main>
-        <Footer 
-            link={featuredImage.url}
-            photographer={featuredImage.photog}
-        />
       </>
       }
+      <Footer 
+          link={featuredImage.url}
+          photographer={featuredImage.photog}
+      />
     </div>
   );
 }
